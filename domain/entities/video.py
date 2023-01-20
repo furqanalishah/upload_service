@@ -3,6 +3,6 @@ from dataclasses import dataclass
 
 @dataclass
 class Video:
-    name: str
+    path: str
     size: float
     format: str
