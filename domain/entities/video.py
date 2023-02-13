@@ -1,8 +1,4 @@
-from dataclasses import dataclass
-
-
-@dataclass
 class Video:
-    path: str
-    size: float
-    format: str
+    def __init__(self, filename: str):
+        self.id = ""
+        self.filename = filename

@@ -3,10 +3,10 @@ from abc import ABC, abstractmethod
 from domain.entities.video import Video
 
 
-class VideoRepository(ABC):
+class MongoRepository(ABC):
 
     @abstractmethod
-    def save(self, video: Video) -> str:
+    def upload(self, video: Video) -> str:
         pass
 
     @abstractmethod
