@@ -1,8 +1,8 @@
 from domain.entities.video import Video
-from domain.repository.video_repository import VideoRepository
+from domain.repository.mongo_repository import MongoRepository
 
 
-class MongoRepository(VideoRepository):
+class MongoRepository(MongoRepository):
     def save(self, video: Video) -> str:
         # logic to save this `video` object in the mongodb GridFS
         pass
