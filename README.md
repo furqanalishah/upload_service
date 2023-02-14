@@ -11,4 +11,6 @@ the uploaded video id (fid) will be sent to the RabbitMQ Queue that then will be
     ```bash
     docker run -d --rm --name rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:3-management
     ```
-3. Just run the `main.py` file in the root directory and visit `http://127.0.0.1:8000/docs`
+3. create a virtual env with `python3 -m venv venv` and activate it with `source venv/bin/activate`
+4. Install the requirements with `pip install -r requirements.txt`
+5. Just run the `main.py` file in the root directory and visit `http://127.0.0.1:8000/docs`
