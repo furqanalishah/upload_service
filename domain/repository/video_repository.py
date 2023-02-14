@@ -1,18 +1,27 @@
-from abc import ABC, abstractmethod
+from typing import Union
+
+from fastapi import UploadFile
+from gridfs import GridFS
+from pymongo import MongoClient
 
 from domain.entities.video import Video
+from domain.repository.mongo_repository import MongoRepository
 
 
-class VideoRepository(ABC):
+class VideoRepository(MongoRepository):
+    def __init__(self, mongo_client: MongoClient):
+        self.fs = GridFS(mongo_client.video)
 
-    @abstractmethod
-    def save(self, video: Video) -> str:
-        pass
+    def upload(self, file: UploadFile) -> str:
+        video_id = self.fs.put(file.file)
+        return video_id
 
-    @abstractmethod
-    def get(self, vid: str) -> Video:
-        pass
+    def get(self, id: str) -> Union[Video, None]:
+        gridout = self.fs.get(id)
+        if gridout:
+            return Video(id=gridout._id, file=gridout.file, file_path=gridout.filename)
+        else:
+            return None
 
-    @abstractmethod
-    def delete(self, vid: str):
-        pass
+    def delete(self, id: str):
+        self.fs.delete(id)
